@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine.SceneManagement;
 
-public class Link
+public class Link : MonoBehaviour
 {
 	[DllImport("__Internal")]
 	private static extern void openWindow(string url);

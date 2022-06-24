@@ -114,7 +114,7 @@ public class CanvasMeneger : MonoBehaviour
         {
             Time.timeScale = 0;
             gamePaused = true;
-            bossButton.gameObject.SetActive(true);
+            //bossButton.gameObject.SetActive(true);
             //resetState.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
             rulesOnPause.SetActive(true);
