@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dopelganger Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 48df7f0767efb43d78a11ffa5270e105, type: 3}
+    - {fileID: 2800000, guid: bb342154045564751a4772783ad6ba34, type: 3}
+    - {fileID: 2800000, guid: c7065d6327e7c4536822dd00f5763211, type: 3}
+    - {fileID: 2800000, guid: 3c6631c82554140ef9dbf31b7614ef2f, type: 3}
+    - {fileID: 2800000, guid: dd3922030e0144d9484a44e5a68737fe, type: 3}
+    - {fileID: 2800000, guid: 88cc5b96eacb54b89bc980b8924b22e8, type: 3}
+    - {fileID: 2800000, guid: 822e682071fef42e6bed82b0e6d55bf5, type: 3}
+    - {fileID: 2800000, guid: 9e4162648b8864f58bd2e44407c8d48d, type: 3}
+    - {fileID: 2800000, guid: 31bf58d554a3a4654926e55ffcfe7142, type: 3}
+    - {fileID: 2800000, guid: 218cdab79aeef4bee94f8091a2a16496, type: 3}
+    - {fileID: 2800000, guid: 7730bfb65aee4456db78c2e499b91ae2, type: 3}
+    - {fileID: 2800000, guid: 4e499fd38df3c441daf2919491219a99, type: 3}
+    - {fileID: 2800000, guid: b3623510b2c034dfa95d076422d5e737, type: 3}
+    - {fileID: 2800000, guid: 6551519d9ec61418896d00974b970002, type: 3}
+    - {fileID: 2800000, guid: 811293189d9604fb1a0ada5732aa3a24, type: 3}
+    - {fileID: 2800000, guid: 8d09c2b1333534cfb91eb2d3c111a6ab, type: 3}
+    - {fileID: 2800000, guid: 4dbcc964e0dd246a8b1358cee78544a4, type: 3}
+    - {fileID: 2800000, guid: e56437b2aa2d14962a23603210ed05ba, type: 3}
+    - {fileID: 2800000, guid: 7d93c516ffb3d44ad8acfbc679a03943, type: 3}
+    - {fileID: 2800000, guid: fba57011bdece405bbcdf4a50087daa3, type: 3}
+    - {fileID: 2800000, guid: dbc410fb5758144c38147748847abaab, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b3623510b2c034dfa95d076422d5e737, type: 3}
+  - {fileID: 21300000, guid: 822e682071fef42e6bed82b0e6d55bf5, type: 3}
+  - {fileID: 21300000, guid: fba57011bdece405bbcdf4a50087daa3, type: 3}
+  - {fileID: 21300000, guid: 8d09c2b1333534cfb91eb2d3c111a6ab, type: 3}
+  - {fileID: 21300000, guid: e56437b2aa2d14962a23603210ed05ba, type: 3}
+  - {fileID: 21300000, guid: dd3922030e0144d9484a44e5a68737fe, type: 3}
+  - {fileID: 21300000, guid: c7065d6327e7c4536822dd00f5763211, type: 3}
+  - {fileID: 21300000, guid: 4e499fd38df3c441daf2919491219a99, type: 3}
+  - {fileID: 21300000, guid: bb342154045564751a4772783ad6ba34, type: 3}
+  - {fileID: 21300000, guid: 9e4162648b8864f58bd2e44407c8d48d, type: 3}
+  - {fileID: 21300000, guid: 4dbcc964e0dd246a8b1358cee78544a4, type: 3}
+  - {fileID: 21300000, guid: 31bf58d554a3a4654926e55ffcfe7142, type: 3}
+  - {fileID: 21300000, guid: 7d93c516ffb3d44ad8acfbc679a03943, type: 3}
+  - {fileID: 21300000, guid: 88cc5b96eacb54b89bc980b8924b22e8, type: 3}
+  - {fileID: 21300000, guid: 7730bfb65aee4456db78c2e499b91ae2, type: 3}
+  - {fileID: 21300000, guid: 48df7f0767efb43d78a11ffa5270e105, type: 3}
+  - {fileID: 21300000, guid: 218cdab79aeef4bee94f8091a2a16496, type: 3}
+  - {fileID: 21300000, guid: 811293189d9604fb1a0ada5732aa3a24, type: 3}
+  - {fileID: 21300000, guid: 3c6631c82554140ef9dbf31b7614ef2f, type: 3}
+  - {fileID: 21300000, guid: dbc410fb5758144c38147748847abaab, type: 3}
+  - {fileID: 21300000, guid: 6551519d9ec61418896d00974b970002, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - white_4
+  - black_4
+  - stack 01
+  - black laser 01
+  - yelow laser 01
+  - black_2
+  - 03
+  - white_3
+  - 02
+  - black_5
+  - black laser 02
+  - black_6
+  - yelow laser 02
+  - black_3
+  - white_2
+  - 01
+  - white_1
+  - white_6
+  - black_1
+  - stack 02
+  - white_5
+  m_Tag: Dopelganger Atlas
+  m_IsVariant: 0
