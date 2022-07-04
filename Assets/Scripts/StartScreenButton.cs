@@ -32,7 +32,7 @@ public class StartScreenButton : MonoBehaviour
 
     void LoadLevelAndPass()
     {
-        //CanvasMeneger.isStartPassed = true;
+        CanvasMeneger.isStartPassed = true;
         SceneManager.LoadScene("Level_1");
     }
 }
