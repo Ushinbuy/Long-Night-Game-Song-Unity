@@ -15,8 +15,8 @@ public class BackGroundManager : MonoBehaviour
     [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
 
     private readonly float maxPosition = -17.5f;
-    private readonly float timeLoopStop_3 = 50f - 12f;
-    private readonly float timeLoopStop_5 = 96f - 15f;
+    private readonly float timeStopLoopImg_3 = 50f - 12f;
+    private readonly float timeStopLoopImg_5 = 96f - 15f;
 
     private float scrollSpeed;
     private static float scrollSpeedDecrement;
@@ -149,12 +149,12 @@ public class BackGroundManager : MonoBehaviour
 
     IEnumerator WaitLoop3()
     {
-        yield return new WaitForSeconds(timeLoopStop_3);
+        yield return new WaitForSeconds(timeStopLoopImg_3);
         state = State.NONE;
     }
     IEnumerator WaitLoop5()
     {
-        yield return new WaitForSeconds(timeLoopStop_5);
+        yield return new WaitForSeconds(timeStopLoopImg_5);
         state = State.NONE;
     }
 

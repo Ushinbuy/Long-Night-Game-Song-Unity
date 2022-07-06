@@ -14,7 +14,7 @@ public class Hero : MoveController
     private Vector2 firstPressPos;
     private bool doesItRight = false;
     
-    private TouchState touchState;
+    private TouchState touchState;  // additional touch state need for better behavior on old mobile phones
     private readonly int swipeRange = 30;
 
     private static bool blumpIsAccess;
@@ -187,6 +187,7 @@ public class Hero : MoveController
     {
         if (Input.touches.Length > 0)
         {
+            // additional touch state need for better behavior on old mobile phones
             Touch t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
             {

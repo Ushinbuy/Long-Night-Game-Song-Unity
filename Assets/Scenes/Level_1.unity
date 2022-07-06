@@ -2983,6 +2983,11 @@ PrefabInstance:
       propertyPath: speedY
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3009584424925515896, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: m_Name
+      value: Background Next Page
+      objectReference: {fileID: 0}
     - target: {fileID: 3009584425080223209, guid: c06c58e492e6848d989488eae0334c2c,
         type: 3}
       propertyPath: m_Name
