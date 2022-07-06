@@ -2,12 +2,12 @@
 
 public class CommonScenariosDelegates : MonoBehaviour
 {
-    delegate void FinalBattery();
-    delegate void BossStart();
-    delegate void EndLevel();
+    public delegate void Level_1Scene();
 
-    FinalBattery finalBattery;
+    public Level_1Scene bossStartStep;
+    public Level_1Scene finalBatteryStep;
 
+    
     private static ScenariosState nextScenariosState;
     private enum ScenariosState
     {
@@ -21,7 +21,9 @@ public class CommonScenariosDelegates : MonoBehaviour
     private void Start()
     {
         nextScenariosState = ScenariosState.START_LEVEL;
-        finalBattery += NextScenarioStep;
+
+        bossStartStep += NextScenarioStep;
+        finalBatteryStep += NextScenarioStep;
     }
 
     private void NextScenarioStep()

@@ -7,6 +7,8 @@ public class Hero : MoveController
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private CanvasMeneger canvasMeneger;
 
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
+
     public AudioClip swipeLeftAudio, swipeRightAudio, batteryAudio, noPowerAudio, atackAudio, heatPlayer;
     private Vector2 firstPressPos;
     private bool doesItRight = false;
@@ -67,7 +69,8 @@ public class Hero : MoveController
         SetBlumpAccess(true);
         StartCoroutine(DisablePauseAfterStart());
 
-        canvasMeneger.bossStartingEvent += HeroBossStart;
+        commonScenariosDelegates.bossStartStep += HeroBossStart;
+        commonScenariosDelegates.finalBatteryStep += FinalBattery;
     }
 
     IEnumerator StartDeceleration()
@@ -130,7 +133,7 @@ public class Hero : MoveController
         heroState = HeroState.BOSS_START;
     }
 
-    private void EndLevel()
+    private void FinalBattery()
     {
         heroState = HeroState.END_LEVEL;
     }

@@ -11,7 +11,7 @@ public class BossManager : MoveController
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip bossBatteryCreate, bossMove, bossDamage, lauchClip,
                                         laserClip, snakeBegin, snakeBite, cloudCreate, bossCameClip;
-
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
     [SerializeField] private CameraShake bossShake;
     private GameObject hero, background;
     private CameraShake heroShake, backgroundShake;
@@ -241,7 +241,8 @@ public class BossManager : MoveController
     void BetteryEnd()
     {
         // this function call by animation "battery"
-        Hero.EndLevel();
+        commonScenariosDelegates.finalBatteryStep.Invoke();
+        commonScenariosDelegates.finalBatteryStep = null;
         StartCoroutine(TheEndCoroutine());
     }
 
