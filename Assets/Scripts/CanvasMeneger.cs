@@ -195,8 +195,7 @@ public class CanvasMeneger : MonoBehaviour
             lampSource.PlayOneShot(lampBadClip);
             StartCoroutine(SlowBatteryDischargeAnimation());
         }
-        Hero heroLink = player.GetComponent<Hero>();
-        heroLink.FinalShot();
+        commonScenariosDelegates.finalShotStep?.Invoke();
     }
 
     IEnumerator MidLampDelay()

@@ -10,7 +10,6 @@ public class Hero : MoveController
 
     [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
 
-
     public AudioClip swipeLeftAudio, swipeRightAudio, batteryAudio, noPowerAudio, atackAudio, heatPlayer;
     private Vector2 firstPressPos;
     private bool doesItRight = false;
@@ -75,6 +74,7 @@ public class Hero : MoveController
         commonScenariosDelegates.finalBatteryStep += FinalBattery;
         commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
         commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
+        commonScenariosDelegates.finalShotStep += FinalShot;
     }
 
     IEnumerator StartDeceleration()
@@ -342,7 +342,7 @@ public class Hero : MoveController
         else { }
     }
 
-    public void FinalShot()
+    private void FinalShot()
     {
         audioSource.PlayOneShot(atackAudio, 0.2f);
         
