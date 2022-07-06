@@ -26,6 +26,9 @@ public class CanvasMeneger : MonoBehaviour
 
     public static bool isStartPassed;
 
+    public delegate void BossStarting();
+    public event BossStarting bossStartingEvent;
+
     private enum CanvasState
     {
         NONE,
@@ -74,6 +77,8 @@ public class CanvasMeneger : MonoBehaviour
         resetState.gameObject.SetActive(false);
         
         StartCoroutine(CoroutineBossBegining());
+
+        bossStartingEvent += BossStartInit;
     }
 
     private void ResetFinish()
@@ -146,12 +151,14 @@ public class CanvasMeneger : MonoBehaviour
 
     private void BossStart()
     {
+        bossStartingEvent?.Invoke();
+    }
+
+    private void BossStartInit()
+    {
         StopCoroutine(CoroutineBossBegining());
-        Hero.BossStart();
-        SpawnManager.BossStart();
-        BackGroundManager.BossStart();
-        bossButton.enabled = false;
         StartCoroutine(PressButtonEbash());
+        bossButton.enabled = false;
     }
 
     IEnumerator PressButtonEbash()

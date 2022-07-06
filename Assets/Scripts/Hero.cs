@@ -5,6 +5,7 @@ public class Hero : MoveController
 {
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private CanvasMeneger canvasMeneger;
 
     public AudioClip swipeLeftAudio, swipeRightAudio, batteryAudio, noPowerAudio, atackAudio, heatPlayer;
     private Vector2 firstPressPos;
@@ -20,7 +21,7 @@ public class Hero : MoveController
 
     private readonly float yMainPosition = -2.9f;
 
-    private static HeroState heroState;
+    private HeroState heroState;
 
     private bool GetDoesItRight() => doesItRight;
     private void SetDoesItRight(bool doesItRight) => this.doesItRight = doesItRight;
@@ -65,6 +66,8 @@ public class Hero : MoveController
         SetMoveBlocked(false);
         SetBlumpAccess(true);
         StartCoroutine(DisablePauseAfterStart());
+
+        canvasMeneger.bossStartingEvent += HeroBossStart;
     }
 
     IEnumerator StartDeceleration()
@@ -122,12 +125,12 @@ public class Hero : MoveController
         moveBlocked = value;
     }
 
-    public static void BossStart()
+    private void HeroBossStart()
     {
         heroState = HeroState.BOSS_START;
     }
 
-    public static void EndLevel()
+    private void EndLevel()
     {
         heroState = HeroState.END_LEVEL;
     }

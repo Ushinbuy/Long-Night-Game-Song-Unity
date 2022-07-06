@@ -11,6 +11,8 @@ public class BackGroundManager : MonoBehaviour
     [SerializeField] private GameObject[] obj67;
     [SerializeField] private GameObject panelkaSky;
 
+    [SerializeField] private CanvasMeneger canvasMeneger;
+
     private readonly float maxPosition = -17.5f;
     private readonly float timeLoopStop_3 = 50f - 12f;
     private readonly float timeLoopStop_5 = 96f - 15f;
@@ -23,7 +25,7 @@ public class BackGroundManager : MonoBehaviour
     private int imagesCounter;
     private GameObject[] currentLayerObjects;
 
-    private static State state;
+    private State state;
 
     private enum State
     {
@@ -47,6 +49,8 @@ public class BackGroundManager : MonoBehaviour
         StartCoroutine(WaitLoop3());
         StartCoroutine(WaitLoop5());
         StartCoroutine(SpawnObjectsCoroutine());
+
+        canvasMeneger.bossStartingEvent += BackGroundManagerBossStart;
     }
 
     public static void StartLevel()
@@ -54,7 +58,7 @@ public class BackGroundManager : MonoBehaviour
         scrollSpeedDecrement = 0;
     }
 
-    public static void BossStart()
+    private void BackGroundManagerBossStart()
     {
         state = State.BOSS_START;
     }

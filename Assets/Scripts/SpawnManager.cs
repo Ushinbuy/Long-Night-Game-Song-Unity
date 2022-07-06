@@ -6,20 +6,32 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject oilEnemyPrefab;
     [SerializeField] private GameObject bzzEnemyPrefab;
     [SerializeField] private GameObject octoEnemyPrefab;
-    [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private GameObject bossGameObject;
     [SerializeField] private GameObject batteryPrefab;
+
+    [SerializeField] private CanvasMeneger canvasMeneger;
 
     private readonly float spawnRangeX = 2.0f;
     private readonly float spawnRangeZ = -0.1f;
 
-    private static bool bossStart;
+    private bool bossStart;
 
     void Start()
     {
-        bossStart = false;
+        InitBoss();
         ProbabilityMaster.SetValues(9, 1, 90, 2f, 50, 1.5f);
         StartCoroutine(SpawnMonstersRandomly());
         StartCoroutine(SpawnBattery());
+
+        canvasMeneger.bossStartingEvent += SpawnManagerBossStart;
+    }
+
+    private void InitBoss()
+    {
+        bossStart = false;
+        bossGameObject.SetActive(false);
+        // boss start position
+        bossGameObject.transform.position = new Vector3(0, 8.3f, -0.1f);
     }
 
     IEnumerator SpawnMonstersRandomly()
@@ -95,7 +107,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public static void BossStart()
+    private void SpawnManagerBossStart()
     {
         bossStart = true;
     }
@@ -103,7 +115,6 @@ public class SpawnManager : MonoBehaviour
     IEnumerator SpawnBoss()
     {
         yield return new WaitForSeconds(4f);
-        Vector3 bossSpawnPos = new Vector3(0, 8.3f, -0.1f);
-        Instantiate(bossPrefab, bossSpawnPos, bossPrefab.transform.rotation);
+        bossGameObject.SetActive(true);
     }
 }
