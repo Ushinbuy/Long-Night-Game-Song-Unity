@@ -51,6 +51,11 @@ public class BackGroundManager : MonoBehaviour
         StartCoroutine(WaitLoop5());
         StartCoroutine(SpawnObjectsCoroutine());
 
+        SubscribeToDelegates();
+    }
+
+    private void SubscribeToDelegates()
+    {
         commonScenariosDelegates.bossStartStep += BackGroundManagerBossStart;
         commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
         commonScenariosDelegates.firstShakeStopStep += ShakeDisable;

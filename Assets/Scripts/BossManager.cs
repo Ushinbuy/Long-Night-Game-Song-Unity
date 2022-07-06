@@ -40,6 +40,11 @@ public class BossManager : MoveController
         bossState = BossState.START_MOVE;
         MoveToY(yNormalPoision, 1.1f);
 
+        SubscribeToDelegates();
+    }
+
+    private void SubscribeToDelegates()
+    {
         commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
         commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
         commonScenariosDelegates.secondShakeStartStep += ShakeEnable;

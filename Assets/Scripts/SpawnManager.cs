@@ -23,14 +23,15 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnMonstersRandomly());
         StartCoroutine(SpawnBattery());
 
-        commonScenariosDelegates.bossStartStep += SpawnManagerBossStart;
+        commonScenariosDelegates.bossStartStep += BossStart;
     }
 
     private void InitBoss()
     {
         bossStart = false;
         bossGameObject.SetActive(false);
-        // boss start position
+
+        // reset boss start position
         bossGameObject.transform.position = new Vector3(0, 8.3f, -0.1f);
     }
 
@@ -107,7 +108,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnManagerBossStart()
+    private void BossStart()
     {
         bossStart = true;
     }

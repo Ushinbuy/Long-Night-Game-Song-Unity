@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Hero : MoveController
 {
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private CanvasMeneger canvasMeneger;
     [SerializeField] private CameraShake cameraShake;
 
     [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
@@ -70,7 +70,12 @@ public class Hero : MoveController
         SetBlumpAccess(true);
         StartCoroutine(DisablePauseAfterStart());
 
-        commonScenariosDelegates.bossStartStep += HeroBossStart;
+        SubscribeToDelegates();
+    }
+
+    private void SubscribeToDelegates()
+    {
+        commonScenariosDelegates.bossStartStep += BossStart;
         commonScenariosDelegates.finalBatteryStep += FinalBattery;
         commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
         commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
@@ -132,7 +137,7 @@ public class Hero : MoveController
         moveBlocked = value;
     }
 
-    private void HeroBossStart()
+    private void BossStart()
     {
         heroState = HeroState.BOSS_START;
     }

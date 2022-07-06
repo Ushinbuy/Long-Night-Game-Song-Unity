@@ -74,8 +74,6 @@ public class CanvasMeneger : MonoBehaviour
         resetState.gameObject.SetActive(false);
         
         StartCoroutine(CoroutineBossBegining());
-
-        commonScenariosDelegates.bossStartStep += BossStartInit;
     }
 
     private void ResetFinish()
@@ -148,14 +146,11 @@ public class CanvasMeneger : MonoBehaviour
 
     private void BossStart()
     {
-        commonScenariosDelegates.bossStartStep?.Invoke();
-    }
-
-    private void BossStartInit()
-    {
         StopCoroutine(CoroutineBossBegining());
         StartCoroutine(PressButtonEbash());
         bossButton.enabled = false;
+
+        commonScenariosDelegates.bossStartStep?.Invoke();
     }
 
     IEnumerator PressButtonEbash()
