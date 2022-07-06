@@ -6,8 +6,10 @@ public class Hero : MoveController
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private CanvasMeneger canvasMeneger;
+    [SerializeField] private CameraShake cameraShake;
 
     [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
+
 
     public AudioClip swipeLeftAudio, swipeRightAudio, batteryAudio, noPowerAudio, atackAudio, heatPlayer;
     private Vector2 firstPressPos;
@@ -71,6 +73,8 @@ public class Hero : MoveController
 
         commonScenariosDelegates.bossStartStep += HeroBossStart;
         commonScenariosDelegates.finalBatteryStep += FinalBattery;
+        commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
+        commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
     }
 
     IEnumerator StartDeceleration()
@@ -243,6 +247,16 @@ public class Hero : MoveController
         }
         firstPressPos = Vector2.zero;
     } 
+
+    private void ShakeEnable()
+    {
+        cameraShake.ShakerEnable = true;
+    }
+
+    private void ShakeDisable()
+    {
+        cameraShake.ShakerEnable = false;
+    }
 
     public void Shot()
     {

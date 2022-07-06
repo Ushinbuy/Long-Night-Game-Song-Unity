@@ -10,8 +10,9 @@ public class BackGroundManager : MonoBehaviour
     [SerializeField] private GameObject[] obj456;
     [SerializeField] private GameObject[] obj67;
     [SerializeField] private GameObject panelkaSky;
+    [SerializeField] private CameraShake cameraShake;
 
-    [SerializeField] private CanvasMeneger canvasMeneger;
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
 
     private readonly float maxPosition = -17.5f;
     private readonly float timeLoopStop_3 = 50f - 12f;
@@ -50,10 +51,22 @@ public class BackGroundManager : MonoBehaviour
         StartCoroutine(WaitLoop5());
         StartCoroutine(SpawnObjectsCoroutine());
 
-        canvasMeneger.bossStartingEvent += BackGroundManagerBossStart;
+        commonScenariosDelegates.bossStartStep += BackGroundManagerBossStart;
+        commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
+        commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
     }
 
-    public static void StartLevel()
+    private void ShakeEnable()
+    {
+        cameraShake.ShakerEnable = true;
+    }
+
+    private void ShakeDisable()
+    {
+        cameraShake.ShakerEnable = false;
+    }
+
+    public static void ZeroingScrollSpeddDecrement()
     {
         scrollSpeedDecrement = 0;
     }

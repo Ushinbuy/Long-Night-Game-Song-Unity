@@ -21,7 +21,7 @@ public class StartScreenButton : MonoBehaviour
         animator.SetTrigger("start_movie");
         passIntroButton.gameObject.SetActive(true);
 
-        BackGroundManager.StartLevel();
+        BackGroundManager.ZeroingScrollSpeddDecrement();
         ScoreManager.ResetScores();
     }
 

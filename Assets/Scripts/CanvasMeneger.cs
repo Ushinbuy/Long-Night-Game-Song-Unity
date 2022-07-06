@@ -11,13 +11,13 @@ public class CanvasMeneger : MonoBehaviour
     [SerializeField] Sprite pauseSprite, resumeSprite;
     [SerializeField] GameObject rulesOnPause;
     [SerializeField] Image pauseButtonImage;
-    [SerializeField] GameObject player;
     [SerializeField] Animator animator;
     [SerializeField] AudioSource lampSource;
     public AudioClip lampMidClip, lampBadClip, lampGoodClip;
 
     [SerializeField] GameObject badLamp, midLamp;
 
+    [SerializeField] CommonScenariosDelegates commonScenariosDelegates;
     private readonly float timeBossBegining = 105;
     private readonly float timeTrackTotal = 171;
     private static CanvasState canvasState;
@@ -25,9 +25,6 @@ public class CanvasMeneger : MonoBehaviour
     private bool gamePaused;
 
     public static bool isStartPassed;
-
-    public delegate void BossStarting();
-    public event BossStarting bossStartingEvent;
 
     private enum CanvasState
     {
@@ -78,7 +75,7 @@ public class CanvasMeneger : MonoBehaviour
         
         StartCoroutine(CoroutineBossBegining());
 
-        bossStartingEvent += BossStartInit;
+        commonScenariosDelegates.bossStartStep += BossStartInit;
     }
 
     private void ResetFinish()
@@ -151,7 +148,7 @@ public class CanvasMeneger : MonoBehaviour
 
     private void BossStart()
     {
-        bossStartingEvent?.Invoke();
+        commonScenariosDelegates.bossStartStep?.Invoke();
     }
 
     private void BossStartInit()

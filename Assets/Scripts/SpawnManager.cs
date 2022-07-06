@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject bossGameObject;
     [SerializeField] private GameObject batteryPrefab;
 
-    [SerializeField] private CanvasMeneger canvasMeneger;
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
 
     private readonly float spawnRangeX = 2.0f;
     private readonly float spawnRangeZ = -0.1f;
@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnMonstersRandomly());
         StartCoroutine(SpawnBattery());
 
-        canvasMeneger.bossStartingEvent += SpawnManagerBossStart;
+        commonScenariosDelegates.bossStartStep += SpawnManagerBossStart;
     }
 
     private void InitBoss()
