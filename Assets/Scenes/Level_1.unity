@@ -1003,7 +1003,7 @@ MonoBehaviour:
   lampGoodClip: {fileID: 8300000, guid: 91b96d5f3189c4687beb42389a445454, type: 3}
   badLamp: {fileID: 170194419}
   midLamp: {fileID: 1574407385}
-  commonScenariosDelegates: {fileID: 519420033}
+  commonScenariosDelegates: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   bossGameObject: {fileID: 412690355}
   batteryPrefab: {fileID: 4124303214138977532, guid: 971769194cad14b089eebc0381d4d264,
     type: 3}
-  commonScenariosDelegates: {fileID: 519420033}
+  commonScenariosDelegates: {fileID: 0}
 --- !u!1 &550389732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,9 +2995,67 @@ PrefabInstance:
       objectReference: {fileID: 57591487}
     - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
         type: 3}
+      propertyPath: flyObjOnImg23
+      value: 
+      objectReference: {fileID: 5460296137126876501, guid: 52818d3aba95d46bfb2afdd86164d062,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg123
+      value: 
+      objectReference: {fileID: 8728157608992447891, guid: 64e6ff7f695fe4617b59d4a390e6f336,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
       propertyPath: commonScenariosDelegates
       value: 
       objectReference: {fileID: 519420033}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg67.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg456.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg67.Array.data[0]
+      value: 
+      objectReference: {fileID: 6795131890552578085, guid: 1c13167adb4124988b193f0bd928edea,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg67.Array.data[1]
+      value: 
+      objectReference: {fileID: 1240734469593435024, guid: b7d25db4782a24d85a213f2298e7d1b0,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg456.Array.data[0]
+      value: 
+      objectReference: {fileID: 9016808518802821817, guid: bb7d89c6d26b34d9bb00686f106638de,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg456.Array.data[1]
+      value: 
+      objectReference: {fileID: 9221229067972710286, guid: c206fbcec6db64ba7ae76d74cec67829,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg456.Array.data[2]
+      value: 
+      objectReference: {fileID: 6290252158653712723, guid: 0c3ec36fe00e54314ba94b1acdc6dd04,
+        type: 3}
+    - target: {fileID: 3009584425080223211, guid: c06c58e492e6848d989488eae0334c2c,
+        type: 3}
+      propertyPath: flyObjOnImg456.Array.data[3]
+      value: 
+      objectReference: {fileID: 816501635168066850, guid: c6b9605fc83934434b9ca7bafc9f6a20,
+        type: 3}
     - target: {fileID: 3009584425080223213, guid: c06c58e492e6848d989488eae0334c2c,
         type: 3}
       propertyPath: m_RootOrder

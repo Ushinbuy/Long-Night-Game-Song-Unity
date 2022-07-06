@@ -6,9 +6,9 @@ public class BackGroundManager : MonoBehaviour
     [Range(0.1f, 10f)]
     public float scrollSpeedStart = 0.5f;
     public Sprite[] images;
-    [SerializeField] private GameObject obj123, obj23;
-    [SerializeField] private GameObject[] obj456;
-    [SerializeField] private GameObject[] obj67;
+    [SerializeField] private GameObject flyObjOnImg123, flyObjOnImg23;
+    [SerializeField] private GameObject[] flyObjOnImg456;
+    [SerializeField] private GameObject[] flyObjOnImg67;
     [SerializeField] private GameObject panelkaSky;
     [SerializeField] private CameraShake cameraShake;
 
@@ -56,7 +56,7 @@ public class BackGroundManager : MonoBehaviour
 
     private void SubscribeToDelegates()
     {
-        commonScenariosDelegates.bossStartStep += BackGroundManagerBossStart;
+        commonScenariosDelegates.bossStartStep += BossStart;
         commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
         commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
     }
@@ -76,7 +76,7 @@ public class BackGroundManager : MonoBehaviour
         scrollSpeedDecrement = 0;
     }
 
-    private void BackGroundManagerBossStart()
+    private void BossStart()
     {
         state = State.BOSS_START;
     }
@@ -129,15 +129,15 @@ public class BackGroundManager : MonoBehaviour
             SwitchSpawnScenario(imagesCounter);
             if (currentPage.sprite.name.Equals("2"))
             {
-                currentLayerObjects = new GameObject[] { obj123, obj23 };
+                currentLayerObjects = new GameObject[] { flyObjOnImg123, flyObjOnImg23 };
             }
             else if (currentPage.sprite.name.Equals("4"))
             {
-                currentLayerObjects = obj456;
+                currentLayerObjects = flyObjOnImg456;
             }
             else if (currentPage.sprite.name.Equals("6"))
             {
-                currentLayerObjects = obj67;
+                currentLayerObjects = flyObjOnImg67;
             }
         }
         else
@@ -182,7 +182,7 @@ public class BackGroundManager : MonoBehaviour
         nextPage.sprite = images[1];
         imagesCounter = 1;
         startPosition = transform.position;
-        currentLayerObjects = new GameObject []{obj123};
+        currentLayerObjects = new GameObject []{flyObjOnImg123};
     }
 
     IEnumerator SpawnObjectsCoroutine()

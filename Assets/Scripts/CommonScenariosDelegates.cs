@@ -1,4 +1,6 @@
-﻿public class CommonScenariosDelegates
+﻿using UnityEngine;
+
+public class CommonScenariosDelegates : MonoBehaviour
 {
     public delegate void Level_1Scene();
 
