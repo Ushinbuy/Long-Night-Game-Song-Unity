@@ -21,7 +21,7 @@ public class StartScreenButton : MonoBehaviour
         animator.SetTrigger("start_movie");
         passIntroButton.gameObject.SetActive(true);
 
-        BackGroundManager.StartLevel();
+        BackGroundManager.ZeroingScrollSpeddDecrement();
         ScoreManager.ResetScores();
     }
 
@@ -32,7 +32,7 @@ public class StartScreenButton : MonoBehaviour
 
     void LoadLevelAndPass()
     {
-        //CanvasMeneger.isStartPassed = true;
+        CanvasMeneger.isStartPassed = true;
         SceneManager.LoadScene("Level_1");
     }
 }

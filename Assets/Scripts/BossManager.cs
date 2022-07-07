@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,10 +10,10 @@ public class BossManager : MoveController
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip bossBatteryCreate, bossMove, bossDamage, lauchClip,
                                         laserClip, snakeBegin, snakeBite, cloudCreate, bossCameClip;
+    [SerializeField] private CameraShake cameraShake;
 
-    [SerializeField] private CameraShake bossShake;
-    private GameObject hero, background;
-    private CameraShake heroShake, backgroundShake;
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
+
     private readonly float yNormalPoision = 2.9f;
 
     private static BossState bossState;
@@ -32,10 +31,6 @@ public class BossManager : MoveController
 
     private void Start()
     {
-        hero = GameObject.Find("Player");
-        heroShake = hero.GetComponent<CameraShake>();
-        background = GameObject.Find("Background");
-        backgroundShake = background.GetComponent<CameraShake>();
         audioSource.PlayOneShot(bossCameClip, 0.9f);
 
         numPositions = 5;
@@ -44,7 +39,16 @@ public class BossManager : MoveController
 
         bossState = BossState.START_MOVE;
         MoveToY(yNormalPoision, 1.1f);
-        //audioSource.PlayOneShot(bossMove, 0.2f);
+
+        SubscribeToDelegates();
+    }
+
+    private void SubscribeToDelegates()
+    {
+        commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
+        commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
+        commonScenariosDelegates.secondShakeStartStep += ShakeEnable;
+        commonScenariosDelegates.secondShakeStopStep += ShakeDisable;
     }
 
     private void Update()
@@ -52,16 +56,15 @@ public class BossManager : MoveController
         if((bossState == BossState.START_MOVE) &&
             yMoveState == MoveState.MOVING)
         {
-            bossShake.ShakerEnable = true;
-            heroShake.ShakerEnable = true;
-            backgroundShake.ShakerEnable = true;
+            commonScenariosDelegates.firstShakeStartStep?.Invoke();
+            commonScenariosDelegates.firstShakeStartStep = null;
         }
         if((bossState == BossState.START_MOVE) &&
             (yMoveState == MoveState.DONE))
         {
-            bossShake.ShakerEnable = false;
-            heroShake.ShakerEnable = false;
-            backgroundShake.ShakerEnable = false;
+            commonScenariosDelegates.firstShakeStopStep?.Invoke();
+            commonScenariosDelegates.firstShakeStopStep = null;
+
             yMoveState = MoveState.NONE;
             StartCoroutine(AtackScenario());
         }
@@ -85,20 +88,30 @@ public class BossManager : MoveController
             if (ScoreManager.GetFinishState() == ScoreManager.FinishState.GOOD)
             {
                 animator.SetTrigger("destroy");
-                bossShake.ShakerEnable = true;
-                backgroundShake.ShakerEnable = true;
+                commonScenariosDelegates.secondShakeStartStep?.Invoke();
+                commonScenariosDelegates.secondShakeStartStep = null;
             }
             else if(ScoreManager.GetFinishState() == ScoreManager.FinishState.MID)
             {
                 animator.SetTrigger("boss mid");
-                bossShake.ShakerEnable = true;
-                backgroundShake.ShakerEnable = true;
+                commonScenariosDelegates.secondShakeStopStep?.Invoke();
+                commonScenariosDelegates.secondShakeStopStep = null;
             }
             else if(ScoreManager.GetFinishState() == ScoreManager.FinishState.BAD)
             {
                 animator.SetTrigger("boss win");
             }
         }
+    }
+
+    private void ShakeEnable()
+    {
+        cameraShake.ShakerEnable = true;
+    }
+
+    private void ShakeDisable()
+    {
+        cameraShake.ShakerEnable = false;
     }
 
     IEnumerator AtackScenario()
@@ -241,7 +254,8 @@ public class BossManager : MoveController
     void BetteryEnd()
     {
         // this function call by animation "battery"
-        Hero.EndLevel();
+        commonScenariosDelegates.finalBatteryStep.Invoke();
+        commonScenariosDelegates.finalBatteryStep = null;
         StartCoroutine(TheEndCoroutine());
     }
 

@@ -1,16 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Hero : MoveController
 {
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private CameraShake cameraShake;
+
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
 
     public AudioClip swipeLeftAudio, swipeRightAudio, batteryAudio, noPowerAudio, atackAudio, heatPlayer;
     private Vector2 firstPressPos;
     private bool doesItRight = false;
     
-    private TouchState touchState;
+    private TouchState touchState;  // additional touch state need for better behavior on old mobile phones
     private readonly int swipeRange = 30;
 
     private static bool blumpIsAccess;
@@ -20,7 +24,7 @@ public class Hero : MoveController
 
     private readonly float yMainPosition = -2.9f;
 
-    private static HeroState heroState;
+    private HeroState heroState;
 
     private bool GetDoesItRight() => doesItRight;
     private void SetDoesItRight(bool doesItRight) => this.doesItRight = doesItRight;
@@ -65,6 +69,17 @@ public class Hero : MoveController
         SetMoveBlocked(false);
         SetBlumpAccess(true);
         StartCoroutine(DisablePauseAfterStart());
+
+        SubscribeToDelegates();
+    }
+
+    private void SubscribeToDelegates()
+    {
+        commonScenariosDelegates.bossStartStep += BossStart;
+        commonScenariosDelegates.finalBatteryStep += FinalBattery;
+        commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
+        commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
+        commonScenariosDelegates.finalShotStep += FinalShot;
     }
 
     IEnumerator StartDeceleration()
@@ -122,12 +137,12 @@ public class Hero : MoveController
         moveBlocked = value;
     }
 
-    public static void BossStart()
+    private void BossStart()
     {
         heroState = HeroState.BOSS_START;
     }
 
-    public static void EndLevel()
+    private void FinalBattery()
     {
         heroState = HeroState.END_LEVEL;
     }
@@ -172,6 +187,7 @@ public class Hero : MoveController
     {
         if (Input.touches.Length > 0)
         {
+            // additional touch state need for better behavior on old mobile phones
             Touch t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
             {
@@ -237,6 +253,16 @@ public class Hero : MoveController
         }
         firstPressPos = Vector2.zero;
     } 
+
+    private void ShakeEnable()
+    {
+        cameraShake.ShakerEnable = true;
+    }
+
+    private void ShakeDisable()
+    {
+        cameraShake.ShakerEnable = false;
+    }
 
     public void Shot()
     {
@@ -322,7 +348,7 @@ public class Hero : MoveController
         else { }
     }
 
-    public void FinalShot()
+    private void FinalShot()
     {
         audioSource.PlayOneShot(atackAudio, 0.2f);
         

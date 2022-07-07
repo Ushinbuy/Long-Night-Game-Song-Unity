@@ -6,14 +6,17 @@ public class BackGroundManager : MonoBehaviour
     [Range(0.1f, 10f)]
     public float scrollSpeedStart = 0.5f;
     public Sprite[] images;
-    [SerializeField] private GameObject obj123, obj23;
-    [SerializeField] private GameObject[] obj456;
-    [SerializeField] private GameObject[] obj67;
+    [SerializeField] private GameObject flyObjOnImg123, flyObjOnImg23;
+    [SerializeField] private GameObject[] flyObjOnImg456;
+    [SerializeField] private GameObject[] flyObjOnImg67;
     [SerializeField] private GameObject panelkaSky;
+    [SerializeField] private CameraShake cameraShake;
+
+    [SerializeField] private CommonScenariosDelegates commonScenariosDelegates;
 
     private readonly float maxPosition = -17.5f;
-    private readonly float timeLoopStop_3 = 50f - 12f;
-    private readonly float timeLoopStop_5 = 96f - 15f;
+    private readonly float timeStopLoopImg_3 = 50f - 12f;
+    private readonly float timeStopLoopImg_5 = 96f - 15f;
 
     private float scrollSpeed;
     private static float scrollSpeedDecrement;
@@ -23,7 +26,7 @@ public class BackGroundManager : MonoBehaviour
     private int imagesCounter;
     private GameObject[] currentLayerObjects;
 
-    private static State state;
+    private State state;
 
     private enum State
     {
@@ -47,14 +50,33 @@ public class BackGroundManager : MonoBehaviour
         StartCoroutine(WaitLoop3());
         StartCoroutine(WaitLoop5());
         StartCoroutine(SpawnObjectsCoroutine());
+
+        SubscribeToDelegates();
     }
 
-    public static void StartLevel()
+    private void SubscribeToDelegates()
+    {
+        commonScenariosDelegates.bossStartStep += BossStart;
+        commonScenariosDelegates.firstShakeStartStep += ShakeEnable;
+        commonScenariosDelegates.firstShakeStopStep += ShakeDisable;
+    }
+
+    private void ShakeEnable()
+    {
+        cameraShake.ShakerEnable = true;
+    }
+
+    private void ShakeDisable()
+    {
+        cameraShake.ShakerEnable = false;
+    }
+
+    public static void ZeroingScrollSpeddDecrement()
     {
         scrollSpeedDecrement = 0;
     }
 
-    public static void BossStart()
+    private void BossStart()
     {
         state = State.BOSS_START;
     }
@@ -107,15 +129,15 @@ public class BackGroundManager : MonoBehaviour
             SwitchSpawnScenario(imagesCounter);
             if (currentPage.sprite.name.Equals("2"))
             {
-                currentLayerObjects = new GameObject[] { obj123, obj23 };
+                currentLayerObjects = new GameObject[] { flyObjOnImg123, flyObjOnImg23 };
             }
             else if (currentPage.sprite.name.Equals("4"))
             {
-                currentLayerObjects = obj456;
+                currentLayerObjects = flyObjOnImg456;
             }
             else if (currentPage.sprite.name.Equals("6"))
             {
-                currentLayerObjects = obj67;
+                currentLayerObjects = flyObjOnImg67;
             }
         }
         else
@@ -127,12 +149,12 @@ public class BackGroundManager : MonoBehaviour
 
     IEnumerator WaitLoop3()
     {
-        yield return new WaitForSeconds(timeLoopStop_3);
+        yield return new WaitForSeconds(timeStopLoopImg_3);
         state = State.NONE;
     }
     IEnumerator WaitLoop5()
     {
-        yield return new WaitForSeconds(timeLoopStop_5);
+        yield return new WaitForSeconds(timeStopLoopImg_5);
         state = State.NONE;
     }
 
@@ -160,7 +182,7 @@ public class BackGroundManager : MonoBehaviour
         nextPage.sprite = images[1];
         imagesCounter = 1;
         startPosition = transform.position;
-        currentLayerObjects = new GameObject []{obj123};
+        currentLayerObjects = new GameObject []{flyObjOnImg123};
     }
 
     IEnumerator SpawnObjectsCoroutine()

@@ -11,13 +11,13 @@ public class CanvasMeneger : MonoBehaviour
     [SerializeField] Sprite pauseSprite, resumeSprite;
     [SerializeField] GameObject rulesOnPause;
     [SerializeField] Image pauseButtonImage;
-    [SerializeField] GameObject player;
     [SerializeField] Animator animator;
     [SerializeField] AudioSource lampSource;
     public AudioClip lampMidClip, lampBadClip, lampGoodClip;
 
     [SerializeField] GameObject badLamp, midLamp;
 
+    [SerializeField] CommonScenariosDelegates commonScenariosDelegates;
     private readonly float timeBossBegining = 105;
     private readonly float timeTrackTotal = 171;
     private static CanvasState canvasState;
@@ -147,11 +147,10 @@ public class CanvasMeneger : MonoBehaviour
     private void BossStart()
     {
         StopCoroutine(CoroutineBossBegining());
-        Hero.BossStart();
-        SpawnManager.BossStart();
-        BackGroundManager.BossStart();
-        bossButton.enabled = false;
         StartCoroutine(PressButtonEbash());
+        bossButton.enabled = false;
+
+        commonScenariosDelegates.bossStartStep?.Invoke();
     }
 
     IEnumerator PressButtonEbash()
@@ -191,8 +190,7 @@ public class CanvasMeneger : MonoBehaviour
             lampSource.PlayOneShot(lampBadClip);
             StartCoroutine(SlowBatteryDischargeAnimation());
         }
-        Hero heroLink = player.GetComponent<Hero>();
-        heroLink.FinalShot();
+        commonScenariosDelegates.finalShotStep?.Invoke();
     }
 
     IEnumerator MidLampDelay()
